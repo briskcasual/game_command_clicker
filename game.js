@@ -5,7 +5,8 @@ var Game = (function(){
 	    w: 10,
 		h: 7,
 	    cells: [],
-		ship: {}
+		ship: {},
+		shipIndex: -1
 	};
 	
 	// DISPOBJ - display object base Class
@@ -39,11 +40,31 @@ var Game = (function(){
 	// create player ship
 	api.createShip = function(){
 		this.ship = new PlayerCellObj();
-		this.cells[15].contents = this.ship;		
+		this.shipIndex = 15;
+		this.cells[this.shipIndex].contents = this.ship;		
+	};
+	
+	api.moveShip = function(){
+	
+		var cell = this.cells[this.shipIndex],
+			obj = cell.contents,
+			nx = Math.round(cell.x+Math.cos(obj.heading/8*(Math.PI*2))),
+			ny = Math.round(cell.y+Math.sin(obj.heading/8*(Math.PI*2)));
+		
+		console.log(cell.x,cell.y);
+		console.log(nx,ny);
+		
+	};
+	
+	// to be called each frame
+	api.update = function(){
+	
 	};
 	
 	// initial setup
 	api.setup();
+	
+	api.moveShip();
 	
 	// return public api to Game
 	return api;
