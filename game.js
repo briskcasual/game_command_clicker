@@ -23,7 +23,7 @@ var Game = (function(){
 	// PLAYEROBJ
 	var PlayerCellObj = function(){
 		this.objType = 'player';
-		this.heading = 5;
+		this.heading = 0;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
 
@@ -63,27 +63,19 @@ var Game = (function(){
 			ny = (cell.y+Math.sin(obj.heading/8*(Math.PI*2))),
 			newCell;
 		
+		// using math modulo
 		nx = Math.round(modulo(nx,this.w));
-		ny = Math.round(modulo(ny,this.h));
-		
+		ny = Math.round(modulo(ny,this.h));		
 		if(nx === this.w){nx = 0;}
 		if(ny === this.h){ny = 0;}
-		
-		console.log(nx,ny);
-		
+
+		// get new cell
 		newCell = this.getCellXY(nx,ny);
 		
 		// update ship index, clear old cell and update new cell
 		this.shipIndex = newCell.i;
 		newCell.contents = this.ship;
 		cell.contents = {};
-		
-		//console.log(cell.x,cell.y);
-		//console.log(nx,ny);
-		//console.log(cell);
-		//console.log(newCell);
-		//console.log(this);
-		
 	};
 	
 	// to be called each frame

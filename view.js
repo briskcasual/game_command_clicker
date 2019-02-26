@@ -15,7 +15,7 @@ var renderType = {
 		var x = cell.x*32,
 			y = cell.y*32,
 			ship = cell.contents;
-		ctx.strokeStyle = 'red';
+		ctx.strokeStyle = '#00ff8a';
 		
 		ctx.save();
 		ctx.translate(x+16,y+16);
@@ -32,14 +32,13 @@ var renderType = {
 
 var renderCells = function(){
 	
-	ctx.fillStyle = 'black';
+	ctx.fillStyle = 'white';
     ctx.fillRect(0,0,canvas.width,canvas.height);
 	
-	ctx.strokeStyle = 'white';
 	var i = Game.cells.length,cell;
 	while(i--){
         cell = Game.cells[i];
-		ctx.strokeStyle = 'white';
+		ctx.strokeStyle = '#008aff';
 		ctx.lineWidth = 3;
 	    ctx.strokeRect(cell.x*32,cell.y*32,32,32);
 		
