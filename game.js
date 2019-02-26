@@ -37,6 +37,10 @@ var Game = (function(){
 		this.createShip();
 	};
 	
+	api.getCellXY = function(x,y){
+		return this.cells[this.w * y + x];
+	};
+	
 	// create player ship
 	api.createShip = function(){
 		this.ship = new PlayerCellObj();
@@ -49,10 +53,13 @@ var Game = (function(){
 		var cell = this.cells[this.shipIndex],
 			obj = cell.contents,
 			nx = Math.round(cell.x+Math.cos(obj.heading/8*(Math.PI*2))),
-			ny = Math.round(cell.y+Math.sin(obj.heading/8*(Math.PI*2)));
+			ny = Math.round(cell.y+Math.sin(obj.heading/8*(Math.PI*2))),
+			newCell = this.getCellXY(nx,ny)
 		
 		console.log(cell.x,cell.y);
 		console.log(nx,ny);
+		console.log(cell);
+		console.log(newCell);
 		
 	};
 	
