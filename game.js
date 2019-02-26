@@ -2,9 +2,7 @@
 var Game = (function(){
 	
 	var modulo = function(x, m) {
- 
         return (x % m + m) % m;
- 
     };
 	
 	// public api
@@ -25,7 +23,7 @@ var Game = (function(){
 	// PLAYEROBJ
 	var PlayerCellObj = function(){
 		this.objType = 'player';
-		this.heading = 7;
+		this.heading = 5;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
 
@@ -52,7 +50,7 @@ var Game = (function(){
 	// create player ship
 	api.createShip = function(){
 		this.ship = new PlayerCellObj();
-		this.shipIndex = 15;
+		this.shipIndex = 33;
 		this.cells[this.shipIndex].contents = this.ship;		
 	};
 	
@@ -65,12 +63,15 @@ var Game = (function(){
 			ny = (cell.y+Math.sin(obj.heading/8*(Math.PI*2))),
 			newCell;
 		
-		nx = modulo(nx,this.w);
-		ny = modulo(ny,this.h);
+		nx = Math.round(modulo(nx,this.w));
+		ny = Math.round(modulo(ny,this.h));
+		
+		if(nx === this.w){nx = 0;}
+		if(ny === this.h){ny = 0;}
 		
 		console.log(nx,ny);
 		
-		newCell = this.getCellXY(Math.round(nx),Math.round(ny));
+		newCell = this.getCellXY(nx,ny);
 		
 		// update ship index, clear old cell and update new cell
 		this.shipIndex = newCell.i;
