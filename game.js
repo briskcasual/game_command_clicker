@@ -1,20 +1,9 @@
-
-// SETUP CANVAS
-var canvas = document.createElement('canvas'),
-	ctx = canvas.getContext('2d'),
-	container = document.getElementById('gamearea') || document.body;
-canvas.width = 320;
-canvas.height = 240;
-ctx.fillStyle = 'black';
-ctx.fillRect(0,0,canvas.width,canvas.height);
-container.appendChild(canvas);
-
 // Game
 var Game = (function(){
 	// public api
 	var api = {
-	    w: 5,
-		h: 5,
+	    w: 10,
+		h: 7,
 	    cells: []
 	};
 	
@@ -47,15 +36,13 @@ var Game = (function(){
 	
 	// create player ship
 	api.createShip = function(){
-	
 		var ship = new PlayerCellObj();
-		this.cells[0].contents = ship;
-		
-	}
+		this.cells[0].contents = ship;		
+	};
 	
 	// initial setup
 	api.setup();
+
 	// return public api to Game
 	return api;
 }());
-console.log(Game);
