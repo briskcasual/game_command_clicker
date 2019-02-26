@@ -4,7 +4,8 @@ var Game = (function(){
 	var api = {
 	    w: 10,
 		h: 7,
-	    cells: []
+	    cells: [],
+		ship: {}
 	};
 	
 	// DISPOBJ - display object base Class
@@ -16,6 +17,7 @@ var Game = (function(){
 	// PLAYEROBJ
 	var PlayerCellObj = function(){
 		this.objType = 'player';
+		this.heading = 0;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
 
@@ -36,8 +38,8 @@ var Game = (function(){
 	
 	// create player ship
 	api.createShip = function(){
-		var ship = new PlayerCellObj();
-		this.cells[0].contents = ship;		
+		this.ship = new PlayerCellObj();
+		this.cells[0].contents = this.ship;		
 	};
 	
 	// initial setup

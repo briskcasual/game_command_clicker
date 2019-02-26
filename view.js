@@ -12,8 +12,18 @@ container.appendChild(canvas);
 // render obj type methods
 var renderType = {
 	player: function(cell){
-		ctx.fillStyle = 'green';
-		ctx.fillRect(cell.x*32,cell.y*32,32,32);
+		var x = cell.x*32,
+			y = cell.y*32;
+		ctx.strokeStyle = 'green';
+		ctx.lineWidth = 3;
+		ctx.beginPath();
+		ctx.moveTo(x + 28, y + 16);
+		ctx.lineTo(x+4,y+4);
+		ctx.lineTo(x+4,y+28);
+		ctx.closePath();
+		ctx.stroke();
+		
+		//ctx.fillRect(x,y,32,32);
 	}
 };
 
