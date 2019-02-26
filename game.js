@@ -25,7 +25,7 @@ var Game = (function(){
 	// PLAYEROBJ
 	var PlayerCellObj = function(){
 		this.objType = 'player';
-		this.heading = 1;
+		this.heading = 7;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
 
@@ -61,25 +61,27 @@ var Game = (function(){
 	
 		var cell = this.cells[this.shipIndex],
 			obj = cell.contents,
-			nx = Math.round(cell.x+Math.cos(obj.heading/8*(Math.PI*2))),
-			ny = Math.round(cell.y+Math.sin(obj.heading/8*(Math.PI*2))),
+			nx = (cell.x+Math.cos(obj.heading/8*(Math.PI*2))),
+			ny = (cell.y+Math.sin(obj.heading/8*(Math.PI*2))),
 			newCell;
 		
 		nx = modulo(nx,this.w);
 		ny = modulo(ny,this.h);
 		
-		newCell = this.getCellXY(nx,ny);
+		console.log(nx,ny);
+		
+		newCell = this.getCellXY(Math.round(nx),Math.round(ny));
 		
 		// update ship index, clear old cell and update new cell
 		this.shipIndex = newCell.i;
 		newCell.contents = this.ship;
 		cell.contents = {};
 		
-		console.log(cell.x,cell.y);
-		console.log(nx,ny);
-		console.log(cell);
-		console.log(newCell);
-		console.log(this);
+		//console.log(cell.x,cell.y);
+		//console.log(nx,ny);
+		//console.log(cell);
+		//console.log(newCell);
+		//console.log(this);
 		
 	};
 	
@@ -92,8 +94,6 @@ var Game = (function(){
 	
 	// initial setup
 	api.setup();
-	
-	api.moveShip();
 	
 	// return public api to Game
 	return api;
