@@ -7,8 +7,8 @@ var Game = (function(){
 	
 	// public api
 	var api = {
-	    w: 10,
-		h: 7,
+	    w: 5,
+		h: 5,
 	    cells: [],
 		ship: {},
 		shipIndex: -1
@@ -50,7 +50,7 @@ var Game = (function(){
 	// create player ship
 	api.createShip = function(){
 		this.ship = new PlayerCellObj();
-		this.shipIndex = 33;
+		this.shipIndex = 12;
 		this.cells[this.shipIndex].contents = this.ship;		
 	};
 	
