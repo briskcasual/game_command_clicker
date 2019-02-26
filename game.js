@@ -1,5 +1,12 @@
 // Game
 var Game = (function(){
+	
+	var modulo = function(x, m) {
+ 
+        return (x % m + m) % m;
+ 
+    };
+	
 	// public api
 	var api = {
 	    w: 10,
@@ -18,7 +25,7 @@ var Game = (function(){
 	// PLAYEROBJ
 	var PlayerCellObj = function(){
 		this.objType = 'player';
-		this.heading = 3;
+		this.heading = 1;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
 
@@ -37,6 +44,7 @@ var Game = (function(){
 		this.createShip();
 	};
 	
+	// get a Cell by X and Y
 	api.getCellXY = function(x,y){
 		return this.cells[this.w * y + x];
 	};
@@ -48,24 +56,38 @@ var Game = (function(){
 		this.cells[this.shipIndex].contents = this.ship;		
 	};
 	
+	// move the player ship to a new cell
 	api.moveShip = function(){
 	
 		var cell = this.cells[this.shipIndex],
 			obj = cell.contents,
 			nx = Math.round(cell.x+Math.cos(obj.heading/8*(Math.PI*2))),
 			ny = Math.round(cell.y+Math.sin(obj.heading/8*(Math.PI*2))),
-			newCell = this.getCellXY(nx,ny)
+			newCell;
+		
+		nx = modulo(nx,this.w);
+		ny = modulo(ny,this.h);
+		
+		newCell = this.getCellXY(nx,ny);
+		
+		// update ship index, clear old cell and update new cell
+		this.shipIndex = newCell.i;
+		newCell.contents = this.ship;
+		cell.contents = {};
 		
 		console.log(cell.x,cell.y);
 		console.log(nx,ny);
 		console.log(cell);
 		console.log(newCell);
+		console.log(this);
 		
 	};
 	
 	// to be called each frame
 	api.update = function(){
 	
+		this.moveShip();
+		
 	};
 	
 	// initial setup
