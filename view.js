@@ -13,17 +13,20 @@ container.appendChild(canvas);
 var renderType = {
 	player: function(cell){
 		var x = cell.x*32,
-			y = cell.y*32;
-		ctx.strokeStyle = 'green';
-		ctx.lineWidth = 3;
+			y = cell.y*32,
+			ship = cell.contents;
+		ctx.strokeStyle = 'red';
+		
+		ctx.save();
+		ctx.translate(x+16,y+16);
+		ctx.rotate(ship.heading/8 * (Math.PI * 2))
 		ctx.beginPath();
-		ctx.moveTo(x + 28, y + 16);
-		ctx.lineTo(x+4,y+4);
-		ctx.lineTo(x+4,y+28);
+		ctx.moveTo(28-16, 16-16);
+		ctx.lineTo(4-16,4-16);
+		ctx.lineTo(4-16,28-16);
 		ctx.closePath();
 		ctx.stroke();
-		
-		//ctx.fillRect(x,y,32,32);
+		ctx.restore();
 	}
 };
 
@@ -36,6 +39,8 @@ var renderCells = function(){
 	var i = Game.cells.length,cell;
 	while(i--){
         cell = Game.cells[i];
+		ctx.strokeStyle = 'white';
+		ctx.lineWidth = 3;
 	    ctx.strokeRect(cell.x*32,cell.y*32,32,32);
 		
 		if(cell.contents.objType){	

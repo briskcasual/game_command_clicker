@@ -17,7 +17,7 @@ var Game = (function(){
 	// PLAYEROBJ
 	var PlayerCellObj = function(){
 		this.objType = 'player';
-		this.heading = 0;
+		this.heading = 3;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
 
@@ -39,12 +39,12 @@ var Game = (function(){
 	// create player ship
 	api.createShip = function(){
 		this.ship = new PlayerCellObj();
-		this.cells[0].contents = this.ship;		
+		this.cells[15].contents = this.ship;		
 	};
 	
 	// initial setup
 	api.setup();
-
+	
 	// return public api to Game
 	return api;
 }());
