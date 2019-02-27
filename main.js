@@ -1,23 +1,23 @@
-var canvasclick = function(){
+var stepHeading = function(){
 
-	console.log('click');
-	
 	Game.ship.heading += 1;
 	Game.ship.heading %= 8;
 	renderCells();
 
 };
 
+var move = function(){
+	Game.update();
+	renderCells();
+};
+
 var loop = function(){
 
 	setTimeout(loop,1000);
 	
-	Game.update();
-	renderCells();
-	
 };
 
-loop();
+//loop();
 
-canvas.addEventListener('click', canvasclick);
+canvas.addEventListener('click', move);
 renderCells();
