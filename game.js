@@ -11,7 +11,10 @@ var Game = (function(){
 		h: 5,
 	    cells: [],
 		ship: {},
-		shipIndex: -1
+		shipIndex: -1,
+		totals: {
+		    circle:0
+		}
 	};
 	
 	// DISPOBJ - display object base Class
@@ -78,6 +81,13 @@ var Game = (function(){
 
 		// get new cell
 		newCell = this.getCellXY(nx,ny);
+		
+		// if the new cell the ship is moving to has something
+		if(newCell.contents.objType){
+		   //console.log(newCell.contents.value);
+			api.totals[newCell.contents.objType] += newCell.contents.value;
+			console.log(api.totals);
+		}
 		
 		// update ship index, clear old cell and update new cell
 		this.shipIndex = newCell.i;
