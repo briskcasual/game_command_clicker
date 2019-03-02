@@ -27,6 +27,18 @@ var renderType = {
 		ctx.closePath();
 		ctx.stroke();
 		ctx.restore();
+	},
+	circle: function(cell){
+	    var x = cell.x*32,
+		y = cell.y*32,
+		ship = cell.contents;
+		
+		ctx.fillStyle = '#ff00ff';
+		ctx.beginPath();
+		ctx.arc(x+16,y+16,5,0,Math.PI*2);
+		ctx.fill();
+		//ctx.fillRect(x,y,5,5);
+		
 	}
 };
 

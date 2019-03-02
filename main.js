@@ -14,10 +14,10 @@ var move = function(){
 var loop = function(){
 
 	setTimeout(loop,1000);
-	
+	move();
 };
 
-//loop();
+loop();
 
-canvas.addEventListener('click', move);
+//canvas.addEventListener('click', move);
 renderCells();

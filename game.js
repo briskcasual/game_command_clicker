@@ -26,6 +26,13 @@ var Game = (function(){
 		this.heading = 0;
 	};
 	PlayerCellObj.prototype = Object.create(CellObj.prototype);
+	
+	// Circles
+	var CircleCellObj = function(){
+	    this.objType = 'circle';
+		this.value = 1;
+	};
+	CircleCellObj.prototype = Object.create(CellObj.prototype);
 
 	// set up the game
 	api.setup = function(){
@@ -37,7 +44,7 @@ var Game = (function(){
 			cell.y = Math.floor(i / this.w);
 			cell.x = i % this.w;
 			cell.i = i;
-			cell.contents = {};
+			cell.contents = new CircleCellObj();
 		}	
 		this.createShip();
 	};
@@ -80,9 +87,7 @@ var Game = (function(){
 	
 	// to be called each frame
 	api.update = function(){
-	
-		this.moveShip();
-		
+		this.moveShip();		
 	};
 	
 	// initial setup
