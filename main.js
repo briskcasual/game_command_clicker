@@ -19,5 +19,5 @@ var loop = function(){
 
 loop();
 
-//canvas.addEventListener('click', move);
+canvas.addEventListener('click', stepHeading);
 renderCells();
